@@ -1,0 +1,11 @@
+.baseBG {
+	background-color: blue;
+  background-image: url("https://images5.alphacoders.com/587/thumb-1920-587597.jpg");
+}
+
+h1 {
+    font-size: 4em;
+    -webkit-text-stroke: 3px darkgrey;
+    -webkit-text-fill-color: white;
+    -webkit-animation: fill 0.5s infinite alternate;
+}

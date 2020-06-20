@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+    {% for post in title %}
+        <div style="margin-top: 30px; width: 255px; height: 750px;" class="col s4">
+            <div style=" height: 450px; background-color:pink ; color: red;"  class="card">
+                <div class="card-image">
+                    <a href="{{post.image_url}}"><img src="{{post.image_url}}" alt=""></a>
+                </div>
+                <div class="card-action">
+                    <h6>{{post.title}}</h6>
+                </div>
+                <div class="card-action">
+                    <h6>{{post.type}}</h6>
+                    <h6>{{post.genre}}</h6>
+                    {% if user.is_authenticated %}
+                    <form action="post">
+                        <button style="background-color: pink;" name="dislike" formaction="add_to_animelist/{{post.anime_id}}/0/" type="submit">
+                            <a class="btn-floating btn-large waves-effect waves-light red accent-4"><i class="material-icons">thumb_down</i></a>
+                        </button>
+                            <button style="background-color: pink;" name="like" formaction="add_to_animelist/{{post.anime_id}}/1/" type="submit">
+                             <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">thumb_up</i></a>
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% if title %}
+{% else%}
+<h1>Search anime</h1>
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    <input class="card-panel black lighten-1" style="margin: 20px 450px 10px 0px; color: white; width: 200px;" type="text" name="anime"><br>
+    <button style="background-color:black;" type="submit" class="btn btr-success">Search</button>
+</form>
+<h1>Search anime by genres</h1>
+    <div class="col s4" >
+        <div class="row">
+            <div  class="col s5" >
+                <form action="post">
+                    <button formaction="search_genre/Action/" type="submit"  style="background-color:black;"class="waves-effect waves-light btn-large" >Action</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Adventure/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Adventure</button>
+                </form>
+            </div>
+            <div class="col s1">
+                <form action="post">
+                    <button formaction="search_genre/Cars/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Cars</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div  class="col s5" >
+                <form action="post">
+                    <button formaction="search_genre/Comedy/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Comedy</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Dementia/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Dementia</button>
+                </form>
+            </div>
+            <div class="col s1">
+                <form action="post">
+                    <button formaction="search_genre/Demons/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Demons</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div  class="col s5" >
+                <form action="post">
+                    <button formaction="search_genre/Drama/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Drama</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Ecchi/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Ecchi</button>
+                </form>
+            </div>
+            <div class="col s1">
+                <form action="post">
+                    <button formaction="search_genre/Fantasy/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Fantasy</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div  class="col s5" >
+                <form action="post">
+                    <button formaction="search_genre/Game/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Game</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Harem/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Harem</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Historical/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Historical</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Horror/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Horror</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Josei/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Josei</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Kids/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Kids</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Magic/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Magic</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Martial_Arts/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Martial Arts</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Mecha/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Mecha</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Military/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Military</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Music/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Music</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Mystery/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Mystery</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Parody/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Parody</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Police/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Police</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Psychological/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Psychological</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Romance/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Romance</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Samurai/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Samurai</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/School/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >School</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Sci-Fi/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Sci-Fi</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Seinen/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Seinen</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Shoujo/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Shoujo</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Shoujo_Ai/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Shoujo Ai</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Shounen/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Shounen</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Shounen_Ai/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Shounen Ai</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Slice_of_Life/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Slice of Life</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Space/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Space</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Sports/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Sports</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Super_Power/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Super Power</button>
+                </form>
+            </div>
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Supernatural/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Supernatural</button>
+                </form>
+            </div>
+            <div  class="col s1" >
+                <form action="post">
+                    <button formaction="search_genre/Thriller/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Thriller</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <form action="post">
+                    <button formaction="search_genre/Vampire/" type="submit" style="background-color:black;" class="waves-effect waves-light btn-large" >Vampire</button>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+{%endif%}
+
+{% endblock content %}

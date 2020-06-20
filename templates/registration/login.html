@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], input[type=password]{
+    width: 90%;
+    padding: 12px 20px;
+    margin: 10px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit]{
+    border: 4px solid gray;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    background-color:gray;
+}
+form{
+background: #000047;
+}
+div{
+    width:250px;
+    margin:150px auto;
+    border: 3px solid black;
+    background-color: black;
+    padding: 0px;
+}
+label{
+    margin: 5px 52px 5px 10px;
+    color: white;
+}
+a{
+    margin: 5px 5px 5px 5px;
+    color: white;
+}
+div{
+    color:white;
+}
+h2{
+color: white;
+text-align: center;
+}
+body{
+    background: url("https://lh6.googleusercontent.com/proxy/L308lLj0adyITUEXJ9CaY099jgmHYfD2ovWm1rQ_JoynzUKCHVMn9bkw7vMULbQiXNqPuw7597RhFP7xpjVkCBmResQM8G9ELjh2XGcWSqvnVvU2uc4VQ4lu7C0WzG8t2mY8=s0-d");
+}
+
+</style>
+<body>
+
+<div>
+    <form method="POST" action="{% url 'login' %}"><br>
+        <h2>Login</h2>
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}<br><br>
+
+        {{ form.password.label_tag }}
+        {{ form.password }}<br><br>
+        {{ form.errors }}
+        <input  type="submit" value="Login"><br><br>
+        <a href="/register/">Create account</a>
+    </form>
+</div>
+
+</body>
+
+
+
+</html>

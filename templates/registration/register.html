@@ -1,0 +1,55 @@
+{% load crispy_forms_tags %}
+
+<html>
+<style>
+<input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit]{
+    border: 4px solid gray;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding: 0px 100px;
+    background-color:gray;
+}
+
+input[type=submit]:hover{
+    background-color: #45a049;
+}
+div{
+    border-radius: 5px;
+    background-color: orange;
+    padding: 5px;
+}
+body{
+    background: url("https://wallpaperaccess.com/full/1797.jpg");
+}
+div{
+    background-color:#000047;
+    color: white;
+}
+</style>
+<body >
+
+<div style="width:600px; margin:150 auto;">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btr-success">Register</button>
+    </form>
+</div>
+
+</body>
+
+
+
+</html>

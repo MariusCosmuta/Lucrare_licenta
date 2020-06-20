@@ -1,0 +1,47 @@
+{% extends 'base.html' %} <!-- Extensia din care face parte -->
+{% block content %}<!-- De unde incepe continutul -->
+<div class="row">
+    {% for post in title %}
+        <div style="margin-top: 30px; width: 255px; height: 750px;" class="col s4">
+            <div style=" height: 450px; background-color:pink ; color: red;"  class="card">
+                <div class="card-image">
+                    <a href="{{post.image_url}}"><img src="{{post.image_url}}" alt=""></a>
+                </div>
+                <div class="card-action">
+                    <h6>{{post.title}}</h6>
+                </div>
+                <div class="card-action">
+                    <h6>{{post.type}}</h6>
+                    <h6>{{post.genre}}</h6>
+                    {% if user.is_authenticated %}
+                        <form action="post">
+                        <button style="background-color: pink;" name="dislike" formaction="add_to_animelist/{{post.anime_id}}/0/" type="submit">
+                            <a class="btn-floating btn-large waves-effect waves-light red accent-4"><i class="material-icons">thumb_down</i></a>
+                        </button>
+                            <button style="background-color: pink;" name="like" formaction="add_to_animelist/{{post.anime_id}}/1/" type="submit">
+                             <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">thumb_up</i></a>
+                        </button>
+                        </form>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    <ul style="margin: auto; padding: 50px 450px" class="pagination">
+        {% if title.has_previous %}
+        <li class="active"><a href="?page={{ title.previous_page_number }}"><i
+            class="material-icons">chevron_left</i></a></li>
+            {% endif %}
+        {% for num in title.paginator.page_range %}
+            {% if title.number == num %}
+                <li style="background-color: blue;" class="active"><a href="#!"> {{num}}</a></li>
+            {% elif num > title.number|add:'-5' and num < title.number|add:'5' %}
+                <li class="active"><a href="?page={{ num }}">{{num}}</a></li>
+            {% endif %}
+        {% endfor %}
+    <li class="active"><a href="?page={{ title.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+</ul>
+
+{% endblock content %}

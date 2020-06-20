@@ -1,0 +1,107 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best anime</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        h1 {
+            font-size: 6em;
+            -webkit-text-stroke: 2px white;
+            -webkit-text-fill-color: black;
+            -webkit-animation: fill 0.5s infinite alternate;
+            text-align:center;
+            }
+        h2 {
+            font-size: 3em;
+            -webkit-text-stroke: 1px white;
+            -webkit-text-fill-color: black;
+            -webkit-animation: fill 0.5s infinite alternate;
+            text-align:left;
+            }
+        #account{
+            margin-top: 0px;
+            font-size: 20px;
+            -webkit-text-stroke: 1px #EE6E73;
+            -webkit-text-fill-color: #EE6E73;
+            -webkit-animation: fill 0.5s infinite alternate;
+        }
+        #search{
+            margin-top: 0px;
+            font-size: 20px;
+            -webkit-text-stroke: 1px orange;
+            -webkit-text-fill-color: orange;
+            -webkit-animation: fill 0.5s infinite alternate;
+        }
+        #rs{
+
+            margin-top: 0px;
+            font-size: 20px;
+            -webkit-text-stroke: 1px  #c1034e;
+            -webkit-text-fill-color: #c1034e;
+            -webkit-animation: fill 0.5s infinite alternate;
+        }
+    </style>
+</head>
+<body style="background-image: url('/static/images/background.jpg');">
+
+<nav style="background-color:#3c3c3c;">
+    <div class="container nav-wrapper" >
+        <a href="/" class="brand-logo">Best anime</a>
+        <ul id="nav-mobile" class="right">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">logout</a></li>
+            {% else %}
+                <li><a href="/login/">Log in</a></li>
+                <li><a href="/register/">Sign in</a></li>
+            {% endif %}
+        </ul><br>
+    </div>
+</nav>
+
+
+
+
+<div  class="container">
+    <div class="row">
+        <div class="col s4">
+            <!-- Promo Content 1 goes here -->
+            <div class="left">
+                <i style="margin-left:60px" class="large material-icons"><a href="{% url 'recommendation_system' %}" style="color: #c1034e">extensiona</a></i>
+                <p id="rs">Recommendation for you</p>
+
+            </div>
+        </div>
+
+        <div class="col s4">
+            <!-- Promo Content 2 goes here -->
+            <div class="center">
+                <i class="large material-icons"><a href="{% url 'search' %}" style="color: orange">storage</a></i>
+                <p id="search">Storage</p>
+            </div>
+        </div>
+
+        <div class="col s4">
+            <!-- Promo Content 3 goes here -->
+            <div class="right">
+                <i style="margin-left: 15px;" class="large material-icons"><a href="{% url 'account' %}" style="color: #EE6E73">account_box</a></i>
+                <p id="account">Your account</p>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+
+</div>
+
+
+
+
+</body>
+</html>
